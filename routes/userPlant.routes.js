@@ -17,7 +17,6 @@ router.post("/create", async (req, res) => {
   try {
       const data = req.body;
       const ownerId = await User.find(req.session.currentUser)
-      
       // console.log("Owner ID: ", ownerId);
       await UserPlant.create({ ...data, owner: ownerId[0].id });
       res.render("userPlant/my-list");

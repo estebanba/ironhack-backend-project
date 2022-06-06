@@ -5,6 +5,7 @@ const plantSchema = new Schema({
   category: String,
   imageSrc: String,
   description: String,
+  lightExposure: String,
   wateringWeekly: Number,
   petFriendly: Boolean,
 });

@@ -2,8 +2,9 @@ const router = require("express").Router();
 
 const Plant = require('../models/Plant.model');
 
-router.get("/", (req, res, next) => {
-  res.render("plant/type-list");
+router.get("/", async (req, res, next) => {
+  let allPlants = await Plant.find();
+  res.render("plant/type-list", {allPlants});
 });
 
 router.get("/create", (req, res, next) => {
@@ -20,5 +21,6 @@ router.post("/create", async (req, res) => {
       console.log("error: ", error)
   }
 })
+
 
 module.exports = router;
