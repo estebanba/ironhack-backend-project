@@ -1,1 +1,24 @@
-Login page
+<div >
+    <h2>Login</h2>
+   
+    <form action="/auth/login" method="POST">
+   
+      <label> Email
+        <input type="email" name="email" placeholder="email@email.com" />
+      </label>
+   
+      <label>Password
+        <input type="password" name="password" placeholder="********" />
+      </label>
+   
+      <button type="submit">Login</button>
+   
+      <% if(typeof errorMessage !== 'undefined') { %>
+        <p class="error"><%= errorMessage %></p>
+      <% } %>
+    </form>
+    <span style="display:flex; flex-direction: row; justify-content: flex-start">
+      <div>If you don't have an account yet, &nbsp </div>
+      <a href="/auth/signup">click here to make one</a>
+    </span>
+  </div>

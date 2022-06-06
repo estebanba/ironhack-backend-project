@@ -14,6 +14,9 @@ const app = express()
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require('./config')(app)
 
+// This function is getting exported from the sessions config folder. It runs express sessions
+require('./config/session.config')(app);
+
 // default value for title local
 const capitalized = require('./utils/capitalized')
 const projectName = 'ironhack-backend-project'
@@ -29,6 +32,7 @@ app.use('/', index)
 const authRoutes = require('./routes/auth.routes')
 app.use('/auth', authRoutes)
 
+<<<<<<< HEAD
 // Handling general plants routes
 const plantRoutes = require('./routes/plant.routes')
 app.use('/plant', plantRoutes)
@@ -36,6 +40,11 @@ app.use('/plant', plantRoutes)
 // Handling user plants routes
 const userPlantRoutes = require('./routes/userPlant.routes')
 app.use('/userPlant', userPlantRoutes)
+=======
+// Handling user routes
+const userRoutes = require('./routes/user.routes')
+app.use('/user-profile', userRoutes)
+>>>>>>> auth/signup/login
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app)
