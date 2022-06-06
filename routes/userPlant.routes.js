@@ -8,15 +8,19 @@ router.get("/", (req, res, next) => {
   res.render("userPlant/my-list");
 });
 
-router.get("/create", (req, res, next) => {
-  res.render("userPlant/my-create");
+router.get("/create", async (req, res, next) => {
+  const plantType = await Plant.find()
+  res.render("userPlant/my-create", { plantType });
 });
 
 router.post("/create", async (req, res) => {
   try {
       const data = req.body;
-      await UserPlant.create(req.body);
-      res.render("userPlant/my-list", {data});
+      const ownerId = await User.find(req.session.currentUser)
+      
+      // console.log("Owner ID: ", ownerId);
+      await UserPlant.create({ ...data, owner: ownerId[0].id });
+      res.render("userPlant/my-list");
   } catch (error) {
       console.log("error: ", error)
   }
