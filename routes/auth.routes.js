@@ -29,6 +29,7 @@ router.post("/signup", async (req, res) => {
     }
 })
 
+// LOGIN
 
 router.get("/login", (req,res,next) => {
     res.render("auth/login")
@@ -64,5 +65,9 @@ router.post("/login", async(req,res,next)=>{
                 console.log(error)
     }
 })
+
+// USER PROFILE // 
+
+// ADD PLANT // 
 
 module.exports = router;
