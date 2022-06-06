@@ -1,5 +1,8 @@
 const router = require("express").Router();
 
+// Middlewares 
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
+
 const User = require("../models/User.model");
 
 // bcrypt //
@@ -10,11 +13,11 @@ const salt = bcryptjs.genSaltSync(saltRounds)
 
 // SIGNUP //
 
-router.get("/signup", (req, res, next) => {
+router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", async (req, res) => {
+router.post("/signup", isLoggedOut, async (req, res) => {
     try {
         const { username, password, email } = req.body;
 
@@ -29,11 +32,11 @@ router.post("/signup", async (req, res) => {
 })
 
 
-router.get("/login", (req,res,next) => {
+router.get("/login",isLoggedOut, (req,res,next) => {
     res.render("auth/login")
 })
 
-router.post("/login", async(req,res,next)=>{
+router.post("/login", isLoggedOut, async(req,res,next)=>{
     try {
         const { email, password } = req.body;
         if (email === "" || password === "") {

@@ -2,9 +2,12 @@
 <% if(userInSession) { %>
 <p>Hello <%= userInSession.username %>! </p>
 <p>This is your profile page my friend!</p>
-  <button>
-    <a href="/user-profile">Reload the page</a>
-  </button>
+<button>
+  <a href="/user-profile">Reload the page</a>
+</button>
+<button>
+  <a href="/newPlant">Add a new plant</a>
+</button>
 <% } else { %>
   <p>Still no logged in user, sorry!</p>
 <% } %>
