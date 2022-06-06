@@ -1,19 +1,16 @@
 <h2>All my plants</h2>
 
-<div>
-    <div>
-        <h1>user Plant Name</h1>
-        <h2>Plant Type Name</h2>
-    </div>
-    <div>
-        <p>location</p>
-        <p>last watering</p>
-        <p>next watering</p>
-        <p>comments</p>
-    </div>
-    <div>
-        <button><a href="#">see more information</a></button>
-        <button><a href="#">back to user profile</a></button>
-    </div>
+<div class="plant-grid">
+    <% myPlants.forEach( plant => { %>
+        <div class="plant-card">
+            <h3><%- plant.name %></h3>
+            <img class="card-img" src="<%- plant.imageSrc %>" alt="image from: <%- plant.name %>">
+            <p class="center"> <%= plant.description %></p>
+            <p class="center">Light Exposure level: <%- plant.light %></p>
+            <p class="center">Water every <%- plant.wateringWeekly %> days</p>
+            <p class="center">Pet Friendly: <%- plant.petFriendly %></p>
+            <a class="center" href="plant/<%- plant._id %> ">See more</a>
+        </div>
+        <% }); %>
 </div>
 

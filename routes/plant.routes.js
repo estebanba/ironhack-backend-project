@@ -22,5 +22,11 @@ router.post("/create", async (req, res) => {
   }
 })
 
+router.get('/:id', async (req, res, next) => {
+  const plantId = req.params.id
+  let plant = await Plant.findById(plantId)
+  res.render("plant/type-detail", { plant })
+});
+
 
 module.exports = router;
