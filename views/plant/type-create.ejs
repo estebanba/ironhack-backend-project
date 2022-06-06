@@ -1,0 +1,35 @@
+<div>
+    <h2>Add a new plant to the main library</h2>
+
+    <form action="/plant/create" method="POST">
+        
+        <label>Name:
+            <input type="text" name="name" required>
+        </label>
+        
+        <label>Category:
+            <input type="text" name="category" required>
+        </label>
+
+        <!-- <label for="">Image:
+            <input type="file" name="imageSrc" accept="image,png, image,jpeg">
+        </label> -->
+    
+        <label>Description:
+            <input type="text" name="description">
+        </label>
+    
+        <label>Water every 
+            <input type="number" name="wateringWeekly">
+             days
+        </label>
+
+        <label>Pet friendly:
+            <input type="checkbox" name="petFriendly">
+        </label>
+
+
+        <button type="submit">Add</button>
+    
+    </form>
+</div>

@@ -29,6 +29,14 @@ app.use('/', index)
 const authRoutes = require('./routes/auth.routes')
 app.use('/auth', authRoutes)
 
+// Handling general plants routes
+const plantRoutes = require('./routes/plant.routes')
+app.use('/plant', plantRoutes)
+
+// Handling user plants routes
+const userPlantRoutes = require('./routes/userPlant.routes')
+app.use('/userPlant', userPlantRoutes)
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app)
 

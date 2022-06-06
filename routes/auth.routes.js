@@ -66,8 +66,5 @@ router.post("/login", async(req,res,next)=>{
     }
 })
 
-// USER PROFILE // 
-
-// ADD PLANT // 
 
 module.exports = router;

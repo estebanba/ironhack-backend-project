@@ -2,11 +2,10 @@ const { Schema, model } = require("mongoose");
 
 const plantSchema = new Schema({
   name: String,
-  plantCategory: String,
+  category: String,
   imageSrc: String,
   description: String,
   wateringWeekly: Number,
-  plantSeason: String,
   petFriendly: Boolean,
 });
 
