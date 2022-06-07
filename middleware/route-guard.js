@@ -7,9 +7,16 @@ const isLoggedIn = (req, res, next) => {
   };
    
   // if an already logged in user tries to access the login page it
-  // redirects the user to the home page
+  // redirects the user to the profile page
   const isLoggedOut = (req, res, next) => {
     if (req.session.currentUser) {
+      return res.redirect('/user-profile');
+    }
+    next();
+  };
+
+  const isAdmin = (req, res, next) => {
+    if (req.session.currentUser.role !== "admin") {
       return res.redirect('/user-profile');
     }
     next();
@@ -17,5 +24,6 @@ const isLoggedIn = (req, res, next) => {
    
   module.exports = {
     isLoggedIn,
-    isLoggedOut
+    isLoggedOut,
+    isAdmin
   };

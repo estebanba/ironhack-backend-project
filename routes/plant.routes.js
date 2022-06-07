@@ -1,5 +1,7 @@
 const router = require("express").Router();
 
+const { isLoggedIn, isLoggedOut, isAdmin } = require("../middleware/route-guard.js");
+
 const Plant = require('../models/Plant.model');
 
 router.get("/", async (req, res, next) => {
@@ -7,7 +9,7 @@ router.get("/", async (req, res, next) => {
   res.render("plant/type-list", {allPlants});
 });
 
-router.get("/create", (req, res, next) => {
+router.get("/create", isLoggedIn, isAdmin, (req, res, next) => {
   res.render("plant/type-create");
 });
 
