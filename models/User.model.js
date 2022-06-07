@@ -19,7 +19,8 @@ const userSchema = new Schema({
     trim: true,
     match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
   },
-  plants: [{type: Schema.Types.ObjectId, ref: UserPlant}]
+  plants: [{type: Schema.Types.ObjectId, ref: UserPlant}],
+  role: String
   //favorite:plants to be
 });
 

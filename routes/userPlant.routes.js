@@ -1,14 +1,16 @@
 const router = require("express").Router();
 
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
+
 const User = require("../models/User.model");
 const Plant = require('../models/Plant.model');
 const UserPlant = require('../models/UserPlant.model');
 
-router.get("/", (req, res, next) => {
+router.get("/", isLoggedIn, (req, res, next) => {
   res.render("userPlant/my-list");
 });
 
-router.get("/create", (req, res, next) => {
+router.get("/create", isLoggedIn, (req, res, next) => {
   res.render("userPlant/my-create");
 });
 
