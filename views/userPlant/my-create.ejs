@@ -11,15 +11,19 @@
         </label>
 
         <label> Plant Type 
-            <select name="plantType" multiple>  
+            <select name="plantType">  
                 <% plantType.forEach(({ id, name }) => { %>
                     <option value="<%= id %>"><%= name %></option>
                 <%})%>
             </select>       
         </label> 
     
-        <label"">Location:
+        <label>Location:
             <input type="text" name="location">
+        </label>
+
+        <label>Last Watered:
+            <input id="lastWatering" type="date" name="lastWatering" placeholder="dd-mm-yyyy" value="" min="2022-01-01" max="2030-12-31">
         </label>
     
         <label>Comments:
