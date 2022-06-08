@@ -1,14 +1,89 @@
 body {
-  padding: 50px;
+  margin: 0;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+header {
+  margin: 0;
+  background-color: rgb(235, 235, 235);
+}
+
+nav {
+  height: 50px;
+  margin: 0 30px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-left {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.nav-right {
+  width: 70%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  text-align: right;
+}
+
+nav ul {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  list-style-type: none;
+}
+
+nav ul li {
+  margin: 10px;
 }
 
 .center {
   text-align: center;
 }
 
+main {
+  margin: 30px;
+}
+
+.form-container {
+  margin: auto;
+  height: 500px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  background: rgb(233, 235, 233);
+  border-radius: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+/* label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+input, textarea, select, button {
+  width : 150px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 a {
-  color: #00b7ff;
+  color: inherit;
+  text-decoration: none;
 }
 
 h1 {
@@ -18,22 +93,36 @@ h1 {
 .plant-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2em;
 }
 
 .plant-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  /* padding: 10px; */
+  background: rgb(241, 255, 237);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgb(228, 228, 228);
 }
 
 .card-img {
   width: 100%;
   height: 300px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .plant-detail {
   display: flex;
   flex-direction: row;
+}
+
+footer {
+  position: fixed; 
+  bottom: 0; 
+  left:0; 
+  width: 100%; 
+  background-color: black;
+  color: white;
 }

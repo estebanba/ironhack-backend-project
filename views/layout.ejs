@@ -3,33 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-euiv="X-UA-Compatible" content="ie=edge" />
     <title><%= appTitle %></title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
   <body>
-    <div class="topnav" style="position: fixed; top: 0; left:0; width: 100%;">
-      <a href="/" class="active">Home</a>
-      <a href="/plants/collection">Plants</a>
-      <a href="/auth/login">Login</a>
-    </div>
+    <header>
+      <nav>
+        <div class="nav-left">
+          <h1><a href="/" class="active">PlantApp</a></h1>
+          <ul>
+            <li><a href="/plant">See the Library</a></li>
+          </ul>
+        </div>
+        <div class="nav-right">
+          <ul class="admin">
+            <li><a href="/plant/create">Create Plant</a></li>
+          </ul>
+          <ul class="logged-in">
+            <li><a href="/userPlant">My Plants</a></li>
+            <li><a href="/userPlant/create">Add Plant</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+          <ul class="logged-out">
+            <li><a href="/auth/login">Login</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
     
-    <%- body %>
+    <main>
+      <%- body %>
+    </main>
+    
 
-    <ul>
-      <li><a href="/userPlant">all my plants</a></li>
-      <li><a href="/userPlant/create">add a new plant to your collection</a></li>
-      <li><a href="/plant">all the plants in the library</a></li>
-      <li><a href="/plant/create">add a new plant to the library</a></li>
-      <li><a href="/">Home</a></li>
-    </ul>
-    
     <footer>
-      <div class="footer" style="position: fixed; bottom: 0; left:0; width: 100%; background-color: black">
-        <p style="color:white">This is our footer</p>
+      <div>
+        <p>Eric | Esteban © 2022</p>
       </div>
     </footer>
+    
     <script src="/js/script.js"></script>
   </body>
 </html>
