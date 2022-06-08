@@ -1,13 +1,17 @@
 <h2>Plant Details</h2>
 
 <% if(typeof plant !== "undefined") { %>
-    <div class="plant-card">
-        <h3><%= plant.name %></h3>
-        <img class="card-img" src="<%- plant.imageSrc %>" alt="image from: <%- plant.name %>">
-        <p class="center"> <%= plant.description %></p>
-        <p class="center">Light Exposure level: <%- plant.light %></p>
-        <p class="center">Water every: <%- plant.wateringWeekly %> days</p>
-        <p class="center">Pet Friendly: <%- plant.petFriendly %></p>
+    <div class="plant-detail">
+        <div>
+            <img class="card-img" src="<%- plant.imageSrc %>" alt="image from: <%- plant.name %>">
+        </div>
+        <div >
+            <h3><%= plant.name %></h3>
+            <p> <%= plant.description %></p>
+            <p><strong>Light Exposure level: </strong><%- plant.light %></p>
+            <p><strong>Water every: </strong><%- plant.wateringWeekly %> days</p>
+            <p><strong>Pet Friendly: </strong><%- plant.petFriendly %></p>
+        </div>
     </div>
 <%  } else { %>     
         <div>
