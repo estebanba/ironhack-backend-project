@@ -10,6 +10,16 @@ const { redirect } = require("express/lib/response");
 router.get("/", isLoggedIn, async (req, res, next) => {
   const ownerId = await User.find(req.session.currentUser)
   let myPlants = await UserPlant.find({owner: ownerId[0].id}).populate("plantType");
+  console.log(myPlants)
+  // let myWatering = await (await UserPlant.find({owner: ownerId[0].id})).populate("plantType");
+  // console.log(">>>>", myWatering)
+  // let patatas = myPlants.forEach(eachPlant => {
+  //   eachPlant.lastWatering
+  // })
+  // console.log(">>>>>>>", patatas)
+  // let receivedDate = myPlants[10].lastWatering
+  // let shortDate = receivedDate.toISOString().split("T");
+  // console.log(shortDate[0])
   res.render("userPlant/my-list", { myPlants });
 });
 
@@ -35,10 +45,13 @@ router.post("/create", async (req, res, next) => {
       console.log(">>>>>>>>>> watering weekly:", watering.wateringWeekly)
 
       const date = new Date (data.lastWatering)
-      let calcWatering = date.setDate(date.getDate() + watering.wateringWeekly);
+      let epochNumber = date.setDate(date.getDate() + watering.wateringWeekly);
+      console.log(">>>>>>>>>> epochNumber: ", epochNumber)
+      let dateNumber = new Date (epochNumber)
+      console.log(">>>>>>>>>> dateNumber: ", dateNumber)
+      let calcWatering = dateNumber.toLocaleString().slice(0, 10)
       console.log("<<<<<<<<< CALCWATERING:", calcWatering, typeof calcWatering)
-      // const nextWatering = lastWatering + wateringWeekly
-
+      
       const ownerId = await User.find(req.session.currentUser)
       // console.log("Owner ID: ", ownerId);
       await UserPlant.create({ ...data, nextWatering: calcWatering, owner: ownerId[0].id});
