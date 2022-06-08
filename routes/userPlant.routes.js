@@ -48,7 +48,7 @@ router.post("/create", async (req, res, next) => {
       console.log(">>>>>>>>>> epochNumber: ", epochNumber)
       let dateNumber = new Date (epochNumber)
       console.log(">>>>>>>>>> dateNumber: ", dateNumber)
-      let calcWatering = dateNumber.toLocaleString().slice(0, 10).split("/").reverse().join("-")
+      let calcWatering = dateNumber.toLocaleString().slice(0, dateNumber.toLocaleString().indexOf(',')).split("/").reverse().join("-")
       console.log("<<<<<<<<< CALCWATERING:", calcWatering, typeof calcWatering, dateNumber.toLocaleString())
       
       const ownerId = await User.find(req.session.currentUser)
@@ -99,8 +99,8 @@ router.post("/:id/watered", async (req,res,next) =>{
   let dateNumberNext = new Date (epochNumberNext)
   console.log(">>>>>>>>>> epochNumber (locale): ", dateNumberLast.toLocaleString())
   console.log(">>>>>>>>>> epochNumber: ", dateNumberNext)
-  let calcWateringLast = dateNumberLast.toLocaleString().slice(0, 10).split("/").reverse().join("-")
-  let calcWateringNext = dateNumberNext.toLocaleString().slice(0, 10).split("/").reverse().join("-")
+  let calcWateringLast = dateNumberLast.toLocaleString().slice(0, dateNumberLast.toLocaleString().indexOf(',')).split("/").reverse().join("-")
+  let calcWateringNext = dateNumberNext.toLocaleString().slice(0, dateNumberNext.toLocaleString().indexOf(',')).split("/").reverse().join("-")
   console.log(">>>>>>>>>> epochNumber: ", calcWateringLast)
   console.log(">>>>>>>>>> epochNumber: ", calcWateringNext)
   await UserPlant.findByIdAndUpdate(plantId, {lastWatering: calcWateringLast,
