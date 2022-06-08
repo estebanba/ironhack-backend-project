@@ -11,4 +11,7 @@
             <a class="center" href="plant/<%- plant._id %> ">See more</a>
         </div>
         <% }); %>
+        <% if(typeof errorMessage !== 'undefined') { %>
+            <p class="error"><%= errorMessage %></p>
+            <% } %>
 </div>

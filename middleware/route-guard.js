@@ -14,10 +14,18 @@ const isLoggedIn = (req, res, next) => {
     }
     next();
   };
-
+//checks if the user has admin rights
   const isAdmin = (req, res, next) => {
     if (req.session.currentUser.role !== "admin") {
-      return res.redirect('/user-profile');
+      return res.render('user/user-profile', {userInSession: req.session.currentUser, errorMessage : "You don't have access rights, ask permission to admin"});
+    }
+    next();
+  };
+
+  // checks if the user is the owner of the plant 
+  const isOwner = (req, res, next) => {
+    if (req.session.currentUser.role !== "admin") {
+      return res.render('user/user-profile', {userInSession: req.session.currentUser, errorMessage : "You don't have access rights, ask permission to admin"});
     }
     next();
   };

@@ -1,7 +1,5 @@
 <div>
     <h2>Add a new plant to your collection</h2>
-    <% let i = "hola" %> 
-    <% console.log('hola') %>
     
 
     <form action="/userPlant/create" method="POST">
@@ -33,4 +31,7 @@
         <button type="submit">Add</button>
     
     </form>
+    <% if(typeof errorMessage !== 'undefined') { %>
+        <p class="error"><%= errorMessage %></p>
+        <% } %>
 </div>

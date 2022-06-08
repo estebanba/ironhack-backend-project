@@ -8,7 +8,7 @@ const userPlantSchema = new Schema({
     owner: {type: Schema.Types.ObjectId, ref: "User"},
     plantType: {type: Schema.Types.ObjectId, ref: "Plant"},
     location: String,
-    lastWatering: {type: String, format: Date},
+    lastWatering: {type: String, format: Date, required: true},
     nextWatering: {type: String, format: Date},
     comments: String,
 });

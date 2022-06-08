@@ -9,6 +9,10 @@
   <a href="/newPlant">Add a new plant</a>
 </button>
 
+<% if(typeof errorMessage !== 'undefined') { %>
+  <p class="error"><%= errorMessage %></p>
+  <% } %>
+
 <% } else { %>
   <p>Still no logged in user, sorry!</p>
 <% } %>

@@ -65,7 +65,7 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
     const userLogged = await User.findOne({ email });
     if (!userLogged) {
       res.render("auth/login", {
-        errorMessage: "User does not exist. Try again please",
+        errorMessage: `User ${email} does not exist. Try again please`,
       });
       return;
     } else if (bcryptjs.compareSync(password, userLogged.password)) {
@@ -79,6 +79,7 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
     }
   } catch (error) {
     console.log(error);
+    res.render("auth/login", { errorMessage: "Unknown error, please try again" });
   }
 });
 
