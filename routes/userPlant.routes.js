@@ -64,9 +64,20 @@ router.post("/create", isLoggedIn, async (req, res, next) => {
 
     const date = new Date(data.lastWatering);
     const today = new Date()
+    const dateEpoch = date.setDate(date.getDate())
+    const todayEpoch = today.setDate(today.getDate())
+    const waterMinusTodayEpoch = new Date().setDate(today.getDate()-watering.wateringWeekly)
     let epochNumber = date.setDate(date.getDate() + watering.wateringWeekly);
-    console.log(">>>>>>>>>> epochNumber: ", "day picked--->",date.setDate(date.getDate()),"7 days ago---->",today.setDate(today.getDate()-7) ,"tomorrow", today.setDate(today.getDate()+1));
     let dateNumber = new Date(epochNumber);
+    if (dateEpoch > todayEpoch) {
+      throw new Error("future")
+    } else if(dateEpoch < waterMinusTodayEpoch){
+      throw new Error(`The plant ${watering.name} has to be watered once every ${watering.wateringWeekly} days. Please water your plant today!`)
+    }
+    console.log("form date", dateEpoch, "today date", todayEpoch, "date from the past", waterMinusTodayEpoch )
+
+    // console.log("fecha de form 1 ",date.setDate(date.getDate()), "fecha de hoy",today.setDate(today.getDate()))
+    // console.log("fecha de form 2 ",date.setDate(date.getDate(data.lastWatering)), "hoy - watering",today.setDate(today.getDate()-watering.wateringWeekly))
     console.log(">>>>>>>>>> dateNumber: ", dateNumber);
     let calcWatering = dateNumber
       .toLocaleString()
@@ -83,7 +94,20 @@ router.post("/create", isLoggedIn, async (req, res, next) => {
     });
     res.redirect("/userPlant");
   } catch (error) {
-    console.log(error)
+    if (error.message === "future") {
+      const plantType = await Plant.find();
+      res.render("userPlant/my-create", {
+        plantType,
+        errorMessage: "Don't leave for tomorrow the watering you can do today my friend",
+      });
+    } else if (error.message.includes("The plant")){
+      const plantType = await Plant.find();
+      res.render("userPlant/my-create", {
+        plantType,
+        errorMessage: error,
+      });
+    }
+
     if (error.message.includes("lastWatering: Path")) {
       const plantType = await Plant.find();
       res.render("userPlant/my-create", {
