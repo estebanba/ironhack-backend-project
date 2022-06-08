@@ -1,5 +1,7 @@
 const router = require("express").Router();
 
+const calcNextDate = require("../utils/calcNextDate");
+
 const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
 
 const User = require("../models/User.model");
@@ -49,9 +51,11 @@ router.post("/create", async (req, res, next) => {
       console.log(">>>>>>>>>> epochNumber: ", epochNumber)
       let dateNumber = new Date (epochNumber)
       console.log(">>>>>>>>>> dateNumber: ", dateNumber)
-      let calcWatering = dateNumber.toLocaleString().slice(0, 10)
+      let calcWatering = dateNumber.toLocaleString().slice(0, 10).split("/").reverse().join("-")
       console.log("<<<<<<<<< CALCWATERING:", calcWatering, typeof calcWatering)
-      
+      // const nextDate = calcNextDate(data.lastWatering, watering.wateringWeekly)
+      // console.log(nextDate)
+
       const ownerId = await User.find(req.session.currentUser)
       // console.log("Owner ID: ", ownerId);
       await UserPlant.create({ ...data, nextWatering: calcWatering, owner: ownerId[0].id});

@@ -3,6 +3,10 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.center {
+  text-align: center;
+}
+
 a {
   color: #00b7ff;
 }
@@ -31,6 +35,7 @@ h1 {
   object-fit: cover;
 }
 
-.center {
-  text-align: center;
+.plant-detail {
+  display: flex;
+  flex-direction: row;
 }
