@@ -10,7 +10,6 @@ const { redirect } = require("express/lib/response");
 router.get("/", isLoggedIn, async (req, res, next) => {
   const ownerId = await User.find(req.session.currentUser)
   let myPlants = await UserPlant.find({owner: ownerId[0].id}).populate("plantType");
-  console.log(myPlants)
   // let myWatering = await (await UserPlant.find({owner: ownerId[0].id})).populate("plantType");
   // console.log(">>>>", myWatering)
   // let patatas = myPlants.forEach(eachPlant => {
@@ -49,8 +48,8 @@ router.post("/create", async (req, res, next) => {
       console.log(">>>>>>>>>> epochNumber: ", epochNumber)
       let dateNumber = new Date (epochNumber)
       console.log(">>>>>>>>>> dateNumber: ", dateNumber)
-      let calcWatering = dateNumber.toLocaleString().slice(0, 10)
-      console.log("<<<<<<<<< CALCWATERING:", calcWatering, typeof calcWatering)
+      let calcWatering = dateNumber.toLocaleString().slice(0, 10).split("/").reverse().join("-")
+      console.log("<<<<<<<<< CALCWATERING:", calcWatering, typeof calcWatering, dateNumber.toLocaleString())
       
       const ownerId = await User.find(req.session.currentUser)
       // console.log("Owner ID: ", ownerId);
@@ -75,7 +74,6 @@ router.post('/:id/edit', async (req, res, next) => {
 })
 
 router.post("/:id/delete", async (req,res,next) =>{
-  console.log(req.params.id)
   const plantId = req.params.id
   await UserPlant.findByIdAndDelete(plantId)
   res.redirect("/userPlant");
@@ -88,5 +86,26 @@ router.get('/:id', async (req, res, next) => {
   // console.log(plant);
   res.render("plant/type-detail", { plant })
 });
+
+router.post("/:id/watered", async (req,res,next) =>{
+  const plantId = req.params.id
+  const wateredPlant = await UserPlant.findById(plantId).populate("plantType")
+  const date = new Date()
+  const epochNumberLast = date.setDate(date.getDate())
+  const epochNumberNext = date.setDate(date.getDate() + wateredPlant.plantType.wateringWeekly);
+  console.log(">>>>>>>>>> epochNumber: ", epochNumberLast)
+  console.log(">>>>>>>>>> epochNumber: ", epochNumberNext)
+  let dateNumberLast = new Date (epochNumberLast)
+  let dateNumberNext = new Date (epochNumberNext)
+  console.log(">>>>>>>>>> epochNumber (locale): ", dateNumberLast.toLocaleString())
+  console.log(">>>>>>>>>> epochNumber: ", dateNumberNext)
+  let calcWateringLast = dateNumberLast.toLocaleString().slice(0, 10).split("/").reverse().join("-")
+  let calcWateringNext = dateNumberNext.toLocaleString().slice(0, 10).split("/").reverse().join("-")
+  console.log(">>>>>>>>>> epochNumber: ", calcWateringLast)
+  console.log(">>>>>>>>>> epochNumber: ", calcWateringNext)
+  await UserPlant.findByIdAndUpdate(plantId, {lastWatering: calcWateringLast,
+    nextWatering: calcWateringNext})
+  res.redirect("/userPlant");
+})
 
 module.exports = router;

@@ -2,8 +2,8 @@
 
 <% %> <% %>
 <div class="plant-grid">
-  <% myPlants.forEach( plant => { %> 
-  
+  <% myPlants.forEach( plant => { %>
+
   <div class="plant-card">
     <img
       class="card-img"
@@ -11,26 +11,25 @@
       alt="image from: <%- plant.name %>"
     />
     <h3><%- plant.name %></h3>
-    <h4>(<%- plant.plantType.name %>)</h4>    
-    <p class="center">Location: <%- plant.location %> </p>
+    <h4>(<%- plant.plantType.name %>)</h4>
+    <p class="center">Location: <%- plant.location %></p>
     <p class="center">Last watered on: <%- plant.lastWatering %></p>
     <p class="center">Next watering: <%- plant.nextWatering %></p>
-    <p class="center">Comments: <%= plant.comments %></p>    
-    
-    <form action="" method="POST">
+    <p class="center">Comments: <%= plant.comments %></p>
+
+    <form action="userPlant/<%- plant._id %>/watered" method="POST">
       <label>
-        <button id="btn-watering" type="button" name="set-current">
+        <button id="btn-watering" type="submit" name="set-current">
           Just watered!
         </button>
       </label>
     </form>
 
-  
-    <a class="center" href="plant/<%- plant._id %>">See more</a>    
-  <a class="center" href="userPlant/<%- plant._id %>/edit">Edit</a>
-  <form action="userPlant/<%- plant._id %>/delete" method="POST">
-    <button type="submit">Delete plant</button>
-  </form>
+    <a class="center" href="plant/<%- plant._id %>">See more</a>
+    <a class="center" href="userPlant/<%- plant._id %>/edit">Edit</a>
+    <form action="userPlant/<%- plant._id %>/delete" method="POST">
+      <button type="submit">Delete plant</button>
+    </form>
   </div>
 
   <% }); %>
