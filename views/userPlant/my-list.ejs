@@ -3,9 +3,7 @@
 <% %> <% %>
 <div class="plant-grid">
   <% myPlants.forEach( plant => { %> 
-  <% let date=plant.lastWatering %> 
-  <% console.log(date, "hola") %>
-  <% let dateFormat = date.slice(0,10) %> 
+  
   <div class="plant-card">
     <img
       class="card-img"
@@ -13,23 +11,12 @@
       alt="image from: <%- plant.name %>"
     />
     <h3><%- plant.name %></h3>
-    <img
-      class="card-img"
-      src="<%= plant.imageSrc %>"
-      alt="image from: <%= plant.name %>"
-    />
-    <p class="center"><%= plant.description %></p>
-    <p class="center">Light Exposure level: <%- plant.light %></p>
-    <p class="center">Water every <%- plant.wateringWeekly %> days</p>
-    <p class="center">Pet Friendly: <%- plant.petFriendly %></p>
-    <a class="center" href="plant/<%- plant._id %>">See more</a>
-    <a class="center" href="userPlant/<%- plant._id %>/edit">Edit</a>
-    <form action="userPlant/<%- plant._id %>/delete" method="POST">
-      <button type="submit">Delete plant</button>
-    </form>
-    <h4>(<%- plant.plantType.name %>)</h4>
-    <p class="center">Location: <%- plant.location %> days</p>
-    <p class="center">Last watered on: <%- dateFormat %></p>
+    <h4>(<%- plant.plantType.name %>)</h4>    
+    <p class="center">Location: <%- plant.location %> </p>
+    <p class="center">Last watered on: <%- plant.lastWatering %></p>
+    <p class="center">Next watering: <%- plant.nextWatering %></p>
+    <p class="center">Comments: <%= plant.comments %></p>    
+    
     <form action="" method="POST">
       <label>
         <button id="btn-watering" type="button" name="set-current">
@@ -37,9 +24,14 @@
         </button>
       </label>
     </form>
-    <p class="center">Next watering: <%- plant.nextWatering %></p>
-    <p class="center">Comments: <%= plant.comments %></p>
-    <a class="center" href="userPlant/<%- plant._id %> ">See more</a>
+
+  
+    <a class="center" href="plant/<%- plant._id %>">See more</a>    
+  <a class="center" href="userPlant/<%- plant._id %>/edit">Edit</a>
+  <form action="userPlant/<%- plant._id %>/delete" method="POST">
+    <button type="submit">Delete plant</button>
+  </form>
   </div>
+
   <% }); %>
 </div>
