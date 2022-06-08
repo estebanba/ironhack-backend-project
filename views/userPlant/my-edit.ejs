@@ -8,19 +8,22 @@
         </label>
 
         <label> Plant Type 
-            <select name="plantType" multiple>  
+            <select name="plantType">  
                 <% plantType.forEach((element) => { %>
                     <% if (plant.plantType.name === element.name) { %>
-        
-                    <option value="<%= element.id %>" selected="selected"><%= element.name %></option>
+                        <option value="<%= element.id %>" selected="selected"><%= element.name %></option>
                     <% } else {%>
-                    <option value="<%= element.id %>"><%= element.name %></option>
+                        <option value="<%= element.id %>"><%= element.name %></option>
                     <% }}) %>
             </select>       
         </label> 
     
-        <label"">Location:
+        <label>Location:
             <input type="text" name="location" value="<%= plant.location %>">
+        </label>
+
+        <label>Last Watered:
+            <input id="lastWatering" type="date" name="lastWatering" placeholder="dd-mm-yyyy" value="<%= plant.lastWatering %>" min="2022-01-01" max="2030-12-31">
         </label>
     
         <label>Comments:
