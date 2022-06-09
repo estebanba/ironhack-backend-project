@@ -1,31 +1,32 @@
 <div>
-  <h2>Login</h2>
+  
+  <div class="form-container">
+    
+    <h2 class="center">Login</h2>
 
-  <form action="/auth/login" method="POST">
-    <label>
-      Email
-      <input type="email" name="email" placeholder="email@email.com" />
-    </label>
+    <form action="/auth/login" method="POST">
+      <label>
+        Email
+        <input type="email" name="email" placeholder="email@email.com" />
+      </label>
+  
+      <label>Password
+        <input type="password" name="password" placeholder="********" />
+      </label>
+  
+      <button type="submit">Login</button>
 
-    <label
-      >Password
-      <input type="password" name="password" placeholder="********" />
-    </label>
-
-    <button type="submit">Login</button>
-
+    </form>
+    
     <% if(typeof errorMessage !== 'undefined') { %>
-    <p class="error"><%= errorMessage %></p>
-    <% } %>
-  </form>
-  <span style="display: flex; flex-direction: row; justify-content: flex-start">
-    <div>If you don't have an account yet, &nbsp</div>
-    <a href="/auth/signup">click here to make one</a>
-  </span>
+      <p class="error"><%= errorMessage %></p>
+      <% } %>
 
-  <div>
-    <% if(typeof errorUsername !== 'undefined') { %>
-    <p class="error"><%= errorUsername %></p>
-    <% } %>
+    <div>
+      <p>If you don't have an account yet, &nbsp</p>
+      <a href="/auth/signup">click here to make one</a>
+    </div>
+    
   </div>
+
 </div>
