@@ -17,7 +17,7 @@ The PlantApp is an App that helps you take care of your personal garden. You can
 ## Backlog
 
 - There's user roles. Admin users have access to different views and different features
-- 
+- Order plants by next watering date
 
 ## ROUTES:
 **Index**
@@ -115,5 +115,6 @@ UserPlant model
     
 ## Links
 
+- [Trello Link](https://trello.com/b/ITGWOM0Q/backend-project)
 - [Slides Link]()
 - [Github repository Link](https://github.com/estebanba/ironhack-backend-project)

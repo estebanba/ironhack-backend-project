@@ -15,7 +15,6 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     let myPlants = await UserPlant.find({ owner: ownerId[0].id }).populate(
       "plantType"
     );
-console.log(myPlants)
     myPlants.forEach((plant) => {
       const date = new Date(plant.nextWatering);
       const today = new Date();
@@ -137,11 +136,23 @@ router.get("/:id/edit", isLoggedIn, async (req, res, next) => {
 router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
   try {
     const plantId = req.params.id;
+    const plantDocument = await UserPlant.findById(plantId).populate("plantType")
+    const newNextWatering = new Date(req.body.lastWatering)
+    const epochNextWatering = newNextWatering.setDate(newNextWatering.getDate()+ plantDocument.plantType.wateringWeekly)
+    let dateNumber = new Date(epochNextWatering);
+    let calcNextWatering = dateNumber
+      .toLocaleString()
+      .slice(0, dateNumber.toLocaleString().indexOf(","))
+      .split("/")
+      .reverse()
+      .join("-");
     await UserPlant.findByIdAndUpdate(plantId, {
       name: req.body.name,
       plantType: req.body.plantType,
       location: req.body.location,
       comments: req.body.comments,
+      lastWatering: req.body.lastWatering,
+      nextWatering: calcNextWatering
     });
     res.redirect("/userPlant");
   } catch (error) {

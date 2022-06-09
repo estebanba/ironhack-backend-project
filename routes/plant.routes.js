@@ -7,6 +7,7 @@ const {
 } = require("../middleware/route-guard.js");
 
 const Plant = require("../models/Plant.model");
+const UserPlant = require("../models/UserPlant.model");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -16,14 +17,13 @@ router.get("/", async (req, res, next) => {
       userInSession: req.session.currentUser,
     });
   } catch (error) {
-    console.log(error);
     res.redirect("/");
   }
 });
 
 router.get("/create", isLoggedIn, isAdmin, (req, res, next) => {
   try {
-    res.render("plant/type-create");
+    res.render("plant/type-create", {userInSession: req.session.currentUser});
   } catch (error) {
     res.redirect("/plant");
   }
@@ -33,13 +33,11 @@ router.post("/create", async (req, res) => {
   try {
     const data = req.body;
     await Plant.create(req.body);
-    console.log("new plant added");
     res.render("plant/type-list", {
       data,
       userInSession: req.session.currentUser,
     });
   } catch (error) {
-    console.log("error: ", error);
     let allPlants = await Plant.find();
     res.render("plant/type-list", {
       allPlants,

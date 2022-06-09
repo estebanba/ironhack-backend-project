@@ -32,15 +32,12 @@ router.post("/signup", isLoggedOut, async (req, res) => {
     });
     res.redirect("/user-profile");
   } catch (error) {
-    console.log("error: ", error);
     if (Object.keys(error.keyValue).includes("username")) {
-      console.log("Username error identified");
       res.render("auth/signup", {
         errorMessage: "User already in use",
         userInSession: req.session.currentUser,
       });
     } else if (Object.keys(error.keyValue).includes("email")) {
-      console.log("Username error identified");
       res.render("auth/signup", {
         userInSession: req.session.currentUser,
         errorMessage: "Email already in use",
@@ -73,11 +70,8 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
       });
       return;
     } else if (bcryptjs.compareSync(password, userLogged.password)) {
-      //currentUser = userLogged
-      console.log("SESSION =====> ", req.session);
       req.session.currentUser = userLogged;
       res.redirect("/user-profile");
-      //res.render("users/user-profile", { userLogged });
     } else {
       res.render("auth/login", {
         errorMessage: "Password is incorrect, try again please",
@@ -85,7 +79,6 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
       });
     }
   } catch (error) {
-    console.log(error);
     res.render("auth/login", {
       errorMessage: "Unknown error, please try again",
       userInSession: req.session.currentUser,
