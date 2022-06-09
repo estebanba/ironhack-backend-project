@@ -16,7 +16,10 @@
       <hr class="card-line" />
       <p class="center">Location: <%- plant.location %></p>
       <p class="center">Last watered on: <%- plant.lastWatering %></p>
-      <p class="center">Next watering: <%- plant.nextWatering %></p>
+
+      <p <% if (plant.watered === true) { %> class="center" <% } else { %>
+      class="center blink" <% } %>>Next watering: <%- plant.nextWatering %></p>
+
       <p class="center comments">Comments: <%= plant.comments %></p>
 
       <a class="center" href="plant/<%- plant._id %>">Click for Details</a>
@@ -50,11 +53,3 @@
     <% }); %>
   </div>
 </div>
-
-<!-- <p class="center"
-<%# <% if (plant.watered === true) { %>
-<% class="fresh" %> %> 
-></p>
-<%#<% } else { %>%>
- <p class="center">It's not fresh <%= plant.watered %></p>
-<%#<% } %> -->%>

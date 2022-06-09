@@ -18,6 +18,7 @@ header {
   width: 100%;
   margin: 0;
   background-color: rgb(135, 203, 172, 0.75);
+  box-shadow: 2px 2px 5px rgb(129, 129, 129);
 }
 
 nav {
@@ -94,20 +95,25 @@ nav ul li, button {
 
 .form-container {
   margin: 50px auto;
-  height: 500px;
   width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: rgb(254, 245, 235, 0.75);
   border-radius: 10px;
-  padding: 10px;
+  padding: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 2px 2px 5px rgb(82, 82, 82);
 }
 
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
 label {
@@ -127,6 +133,7 @@ h1 {
 }
 
 h2 {
+  font-size: 2em;
   color: #87CBAC;
 }
 
@@ -158,6 +165,7 @@ h4 {
   bottom: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 2px 2px 5px rgb(151, 151, 151);
 }
 
 .btn-hero :hover {
@@ -226,8 +234,29 @@ h4 {
 }
 
 .plant-detail {
+  width: 75%;
+  height: 600px;
   display: flex;
   flex-direction: row;
+  background-color: #FEF5EB;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 2px 2px 5px rgb(151, 151, 151);
+}
+
+.detail-img {
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.plant-info {
+  padding: 50px;
+  text-align: justify;
 }
 
 footer {
@@ -241,7 +270,24 @@ footer {
 }
 
 input, textarea, select, button {
-  padding: 0;
+  padding: 10x;
   margin: 0;
   box-sizing: border-box;
+}
+
+.blink {
+  font-weight: 700;
+  color: rgb(224, 116, 116);
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }

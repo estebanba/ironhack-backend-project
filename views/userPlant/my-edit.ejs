@@ -1,49 +1,51 @@
-<div>
-  <h2>Edit a plant of your collection</h2>
+<div class="content">
+  <div class="form-container">
+    <h2>Edit a plant of your collection</h2>
 
-  <form class="form" action="/userPlant/<%= plant.id %>/edit" method="POST">
-    <label
-      >Name:
-      <input type="text" name="name" value="<%= plant.name %>" required />
-    </label>
+    <form class="form" action="/userPlant/<%= plant.id %>/edit" method="POST">
+      <label
+        >Name:
+        <input type="text" name="name" value="<%= plant.name %>" required />
+      </label>
 
-    <label>
-      Plant Type
-      <select name="plantType">
-        <% plantType.forEach((element) => { %> <% if (plant.plantType.name ===
-        element.name) { %>
-        <option value="<%= element.id %>" selected="selected">
-          <%= element.name %>
-        </option>
-        <% } else {%>
-        <option value="<%= element.id %>"><%= element.name %></option>
-        <% }}) %>
-      </select>
-    </label>
+      <label>
+        Plant Type
+        <select name="plantType">
+          <% plantType.forEach((element) => { %> <% if (plant.plantType.name ===
+          element.name) { %>
+          <option value="<%= element.id %>" selected="selected">
+            <%= element.name %>
+          </option>
+          <% } else {%>
+          <option value="<%= element.id %>"><%= element.name %></option>
+          <% }}) %>
+        </select>
+      </label>
 
-    <label
-      >Location:
-      <input type="text" name="location" value="<%= plant.location %>" />
-    </label>
+      <label
+        >Location:
+        <input type="text" name="location" value="<%= plant.location %>" />
+      </label>
 
-    <label
-      >Last Watered:
-      <input
-        id="lastWatering"
-        type="date"
-        name="lastWatering"
-        placeholder="dd-mm-yyyy"
-        value="<%= plant.lastWatering %>"
-        min="2022-01-01"
-        max="2030-12-31"
-      />
-    </label>
+      <label
+        >Last Watered:
+        <input
+          id="lastWatering"
+          type="date"
+          name="lastWatering"
+          placeholder="dd-mm-yyyy"
+          value="<%= plant.lastWatering %>"
+          min="2022-01-01"
+          max="2030-12-31"
+        />
+      </label>
 
-    <label
-      >Comments:
-      <input type="text" name="comments" value="<%= plant.comments %>" />
-    </label>
+      <label
+        >Comments:
+        <input type="text" name="comments" value="<%= plant.comments %>" />
+      </label>
 
-    <button type="submit">Save changes</button>
-  </form>
+      <button type="submit">Save changes</button>
+    </form>
+  </div>
 </div>

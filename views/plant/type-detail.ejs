@@ -1,16 +1,15 @@
 <div class="content">
-  <h2>Plant Details</h2>
-
   <% if(typeof plant !== "undefined") { %>
   <div class="plant-detail">
     <div>
       <img
-        class="card-img"
+        class="detail-img"
         src="<%- plant.imageSrc %>"
         alt="image from: <%- plant.name %>"
       />
     </div>
-    <div>
+    <div class="plant-info">
+      <h2>Plant Details</h2>
       <h3><%= plant.name %></h3>
       <p><%= plant.description %></p>
       <p><strong>Light Exposure level: </strong><%- plant.light %></p>
