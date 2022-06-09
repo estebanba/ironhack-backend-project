@@ -1,36 +1,47 @@
 <div>
-    <h2>Add a new plant to your collection</h2>
-    
-    <form action="/userPlant/create" method="POST">
-        
-        <label>Name:
-            <input type="text" name="name" required>
-        </label>
+  <h2>Add a new plant to your collection</h2>
 
-        <label> Plant Type 
-            <select name="plantType">  
-                <% plantType.forEach(({ id, name }) => { %>
-                    <option value="<%= id %>"><%= name %></option>
-                <%})%>
-            </select>       
-        </label> 
-    
-        <label>Location:
-            <input type="text" name="location">
-        </label>
+  <form class="form" action="/userPlant/create" method="POST">
+    <label
+      >Name:
+      <input type="text" name="name" required />
+    </label>
 
-        <label>Last Watered:
-            <input id="lastWatering" type="date" name="lastWatering" placeholder="dd-mm-yyyy" value="" min="2022-01-01" max="2030-12-31">
-        </label>
-    
-        <label>Comments:
-            <input type="text" name="comments">
-        </label>
-    
-        <button type="submit">Add</button>
-    
-    </form>
-    <% if(typeof errorMessage !== 'undefined') { %>
-        <p class="error"><%= errorMessage %></p>
-        <% } %>
+    <label>
+      Plant Type
+      <select name="plantType">
+        <% plantType.forEach(({ id, name }) => { %>
+        <option value="<%= id %>"><%= name %></option>
+        <%})%>
+      </select>
+    </label>
+
+    <label
+      >Location:
+      <input type="text" name="location" />
+    </label>
+
+    <label
+      >Last Watered:
+      <input
+        id="lastWatering"
+        type="date"
+        name="lastWatering"
+        placeholder="dd-mm-yyyy"
+        value=""
+        min="2022-01-01"
+        max="2030-12-31"
+      />
+    </label>
+
+    <label
+      >Comments:
+      <input type="text" name="comments" />
+    </label>
+
+    <button type="submit">Add</button>
+  </form>
+  <% if(typeof errorMessage !== 'undefined') { %>
+  <p class="error"><%= errorMessage %></p>
+  <% } %>
 </div>

@@ -1,17 +1,23 @@
-<h2>All the Plants</h2>
+<div class="content">
+  <h2>All the Plants in our Library</h2>
 
-<div class="plant-grid">
+  <div class="plant-grid">
     <% allPlants.forEach( plant => { %>
-        <div class="plant-card">
-            <img class="card-img" src="<%- plant.imageSrc %>" alt="image from: <%- plant.name %>">
-            <h3><%- plant.name %></h3>
-            <p class="center">Light Exposure level: <%- plant.light %></p>
-            <p class="center">Water every: <%- plant.wateringWeekly %> days</p>
-            <p class="center">Pet Friendly: <%- plant.petFriendly %></p>
-            <a class="center" href="plant/<%- plant._id %> ">See more</a>
-        </div>
-        <% }); %>
-        <% if(typeof errorMessage !== 'undefined') { %>
-            <p class="error"><%= errorMessage %></p>
-            <% } %>
+    <div class="plant-card">
+      <img
+        class="card-img"
+        src="<%- plant.imageSrc %>"
+        alt="image from: <%- plant.name %>"
+      />
+      <h3><%- plant.name %></h3>
+      <hr />
+      <p class="center">Light Exposure level: <%- plant.light %></p>
+      <p class="center">Water every: <%- plant.wateringWeekly %> days</p>
+      <p class="center">Pet Friendly: <%- plant.petFriendly %></p>
+      <a class="center" href="plant/<%- plant._id %> ">Click for Details</a>
+    </div>
+    <% }); %> <% if(typeof errorMessage !== 'undefined') { %>
+    <p class="error"><%= errorMessage %></p>
+    <% } %>
+  </div>
 </div>

@@ -13,18 +13,16 @@
       <nav>
         <div class="nav-left">
           <h1><a href="/" class="active">PlantApp</a></h1>
-          <ul>
-            <li><a href="/plant">See the Library</a></li>
-          </ul>
         </div>
         <div class="nav-right">
           <% if (typeof userInSession !== "undefined") { if (userInSession.role
           === "admin") { %>
           <ul class="admin">
-            <li><a href="/plant/create">Admin: Create Plant</a></li>
+            <li><a href="/plant/create">Create Plant</a></li>
           </ul>
           <% } %> <% if (userInSession) { %>
-          <ul class="logged-in">
+          <ul>
+            <li><a href="/plant">Library</a></li>
             <li><a href="/userPlant">My Plants</a></li>
             <li><a href="/userPlant/create">Add Plant</a></li>
             <li>
@@ -34,7 +32,7 @@
             </li>
           </ul>
           <% } } %> <% if (!userInSession) { %>
-          <ul class="logged-out">
+          <ul>
             <li><a href="/auth/login">Login</a></li>
           </ul>
           <% } %>
@@ -42,11 +40,11 @@
       </nav>
     </header>
 
-    <main><%- body %></main>
+    <%- body %>
 
     <footer>
       <div>
-        <p>Eric Company | Esteban Basili © 2022</p>
+        <p>Eric Company | Esteban Basili | Barcelona | Berlin | 2022</p>
       </div>
     </footer>
 
