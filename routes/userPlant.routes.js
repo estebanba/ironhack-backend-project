@@ -137,7 +137,6 @@ router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
   try {
     const plantId = req.params.id;
     const plantDocument = await UserPlant.findById(plantId).populate("plantType")
-    console.log(req.params)
     const newNextWatering = new Date(req.body.lastWatering)
     const epochNextWatering = newNextWatering.setDate(newNextWatering.getDate()+ plantDocument.plantType.wateringWeekly)
     let dateNumber = new Date(epochNextWatering);
@@ -147,10 +146,6 @@ router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
       .split("/")
       .reverse()
       .join("-");
-      console.log(newNextWatering,
-        epochNextWatering,
-        dateNumber,
-        calcNextWatering)
     await UserPlant.findByIdAndUpdate(plantId, {
       name: req.body.name,
       plantType: req.body.plantType,
@@ -161,7 +156,6 @@ router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
     });
     res.redirect("/userPlant");
   } catch (error) {
-    console.log(error)
     res.render("user/user-profile", {
       errorMessage: "An error occurred while editing a plant",
       userInSession: req.session.currentUser,

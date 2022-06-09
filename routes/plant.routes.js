@@ -23,7 +23,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/create", isLoggedIn, isAdmin, (req, res, next) => {
   try {
-    res.render("plant/type-create");
+    res.render("plant/type-create", {userInSession: req.session.currentUser});
   } catch (error) {
     res.redirect("/plant");
   }
@@ -57,7 +57,6 @@ router.get("/:id", async (req, res, next) => {
       userInSession: req.session.currentUser,
     });
   } catch (error) {
-    console.log("error", error)
     res.redirect("/plant");
   }
 });
