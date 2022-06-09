@@ -15,6 +15,16 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     let myPlants = await UserPlant.find({ owner: ownerId[0].id }).populate(
       "plantType"
     );
+console.log(myPlants)
+    myPlants.forEach((plant) => {
+      const date = new Date(plant.nextWatering);
+      const today = new Date();
+      const dateEpoch = date.setDate(date.getDate());
+      const todayEpoch = today.setDate(today.getDate());
+      if (dateEpoch < todayEpoch) {
+        plant.watered = false
+      }
+    });
 
     res.render("userPlant/my-list", {
       myPlants,
@@ -28,7 +38,6 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     });
   }
 });
-
 
 router.get("/create", isLoggedIn, async (req, res, next) => {
   try {
@@ -76,6 +85,7 @@ router.post("/create", isLoggedIn, async (req, res, next) => {
       ...data,
       nextWatering: calcWatering,
       owner: ownerId[0].id,
+      watered: true,
     });
     res.redirect("/userPlant");
   } catch (error) {
@@ -118,7 +128,7 @@ router.get("/:id/edit", isLoggedIn, async (req, res, next) => {
       userInSession: req.session.currentUser,
     });
   } catch (error) {
-    res.redirect("user-profile", {
+    res.render("user-profile", {
       errorMessage: "An error occurred while editing a plant",
     });
   }
@@ -135,8 +145,9 @@ router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
     });
     res.redirect("/userPlant");
   } catch (error) {
-    res.redirect("user-profile", {
+    res.render("user/user-profile", {
       errorMessage: "An error occurred while editing a plant",
+      userInSession: req.session.currentUser,
     });
   }
 });
@@ -147,8 +158,9 @@ router.post("/:id/delete", isLoggedIn, async (req, res, next) => {
     await UserPlant.findByIdAndDelete(plantId);
     res.redirect("/userPlant");
   } catch (error) {
-    res.redirect("/user-profile", {
+    res.render("user/user-profile", {
       errorMessage: "An error occurred while deleting a plant",
+      userInSession: req.session.currentUser,
     });
   }
 });
@@ -162,7 +174,7 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
       userInSession: req.session.currentUser,
     });
   } catch (error) {
-    res.redirect("/user-profile")
+    res.redirect("/user-profile");
   }
 });
 
@@ -174,8 +186,9 @@ router.post("/:id/watered", async (req, res, next) => {
     );
     const date = new Date();
     const epochNumberLast = date.setDate(date.getDate());
-    const epochNumberNext = date.setDate(
-      date.getDate() + wateredPlant.plantType.wateringWeekly
+    const nextDate = new Date();
+    const epochNumberNext = nextDate.setDate(
+      nextDate.getDate() + wateredPlant.plantType.wateringWeekly
     );
     let dateNumberLast = new Date(epochNumberLast);
     let dateNumberNext = new Date(epochNumberNext);
@@ -194,10 +207,11 @@ router.post("/:id/watered", async (req, res, next) => {
     await UserPlant.findByIdAndUpdate(plantId, {
       lastWatering: calcWateringLast,
       nextWatering: calcWateringNext,
+      watered: true
     });
     res.redirect("/userPlant");
   } catch (error) {
-    res.redirect("userPlant");
+    res.redirect("/userPlant");
   }
 });
 

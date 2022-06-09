@@ -15,7 +15,7 @@
     <p class="center">Location: <%- plant.location %></p>
     <p class="center">Last watered on: <%- plant.lastWatering %></p>
     <p class="center">Next watering: <%- plant.nextWatering %></p>
-    <p class="center">Comments: <%= plant.comments %></p>
+    <p class="center">Comments: <%= plant.comments %></p>   
 
     <form action="userPlant/<%- plant._id %>/watered" method="POST">
       <label>
@@ -34,3 +34,12 @@
 
   <% }); %>
 </div>
+
+
+<!-- <p class="center"
+<%# <% if (plant.watered === true) { %>
+<% class="fresh" %> %> 
+></p>
+<%#<% } else { %>%>
+ <p class="center">It's not fresh <%= plant.watered %></p>
+<%#<% } %> -->%>

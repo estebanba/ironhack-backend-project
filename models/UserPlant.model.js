@@ -10,6 +10,7 @@ const userPlantSchema = new Schema({
     location: String,
     lastWatering: {type: String, format: Date, required: true},
     nextWatering: {type: String, format: Date},
+    watered: Boolean,
     comments: String,
 });
 
