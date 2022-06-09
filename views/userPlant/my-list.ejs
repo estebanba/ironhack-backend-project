@@ -1,40 +1,55 @@
-<h2>All my plants</h2>
+<div class="content">
+  <h2>All my plants</h2>
 
-<% %> <% %>
-<div class="plant-grid">
-  <% myPlants.forEach( plant => { %>
+  <% %> <% %>
+  <div class="plant-grid">
+    <% myPlants.forEach( plant => { %>
 
-  <div class="plant-card">
-    <img
-      class="card-img"
-      src="<%= plant.plantType.imageSrc %>"
-      alt="image from: <%- plant.name %>"
-    />
-    <h3><%- plant.name %></h3>
-    <h4>(<%- plant.plantType.name %>)</h4>
-    <p class="center">Location: <%- plant.location %></p>
-    <p class="center">Last watered on: <%- plant.lastWatering %></p>
-    <p class="center">Next watering: <%- plant.nextWatering %></p>
-    <p class="center">Comments: <%= plant.comments %></p>   
+    <div class="plant-card">
+      <img
+        class="card-img"
+        src="<%= plant.plantType.imageSrc %>"
+        alt="image from: <%- plant.name %>"
+      />
+      <h3><%- plant.name %></h3>
+      <h4>(<%- plant.plantType.name %>)</h4>
+      <hr class="card-line" />
+      <p class="center">Location: <%- plant.location %></p>
+      <p class="center">Last watered on: <%- plant.lastWatering %></p>
+      <p class="center">Next watering: <%- plant.nextWatering %></p>
+      <p class="center comments">Comments: <%= plant.comments %></p>
 
-    <form action="userPlant/<%- plant._id %>/watered" method="POST">
-      <label>
-        <button id="btn-watering" type="submit" name="set-current">
-          Just watered!
-        </button>
-      </label>
-    </form>
+      <a class="center" href="plant/<%- plant._id %>">Click for Details</a>
 
-    <a class="center" href="plant/<%- plant._id %>">See more</a>
-    <a class="center" href="userPlant/<%- plant._id %>/edit">Edit</a>
-    <form action="userPlant/<%- plant._id %>/delete" method="POST">
-      <button type="submit">Delete plant</button>
-    </form>
+      <hr class="card-line" />
+
+      <div class="card-controls">
+        <form action="userPlant/<%- plant._id %>/watered" method="POST">
+          <label>
+            <button
+              class="blend-style"
+              id="btn-watering"
+              type="submit"
+              name="set-current"
+            >
+              Water
+            </button>
+          </label>
+        </form>
+        <p>|</p>
+        <a id="edit" class="center" href="userPlant/<%- plant._id %>/edit"
+          >Edit</a
+        >
+        <p>|</p>
+        <form action="userPlant/<%- plant._id %>/delete" method="POST">
+          <button id="delete" class="blend-style" type="submit">Delete</button>
+        </form>
+      </div>
+    </div>
+
+    <% }); %>
   </div>
-
-  <% }); %>
 </div>
-
 
 <!-- <p class="center"
 <%# <% if (plant.watered === true) { %>

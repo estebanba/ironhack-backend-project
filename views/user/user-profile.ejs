@@ -1,18 +1,17 @@
-<h1>User page </h1>
-<% if(userInSession) { %>
-<p>Hello <%= userInSession.username %>! </p>
-<p>This is your profile page my friend!</p>
-<button>
-  <a href="/user-profile">Reload the page</a>
-</button>
-<button>
-  <a href="/newPlant">Add a new plant</a>
-</button>
+<div class="content">
+  <% if(userInSession) { %>
+  <h1>Hello <%= userInSession.username %>!</h1>
+  <p>This is your profile page my friend!</p>
+  <button>
+    <a href="/user-profile">Reload the page</a>
+  </button>
+  <button>
+    <a href="/newPlant">Add a new plant</a>
+  </button>
 
-<% if(typeof errorMessage !== 'undefined') { %>
+  <% if(typeof errorMessage !== 'undefined') { %>
   <p class="error"><%= errorMessage %></p>
-  <% } %>
-
-<% } else { %>
+  <% } %> <% } else { %>
   <p>Still no logged in user, sorry!</p>
-<% } %>
+  <% } %>
+</div>

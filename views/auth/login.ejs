@@ -1,32 +1,30 @@
-<div>
-  
-  <div class="form-container">
-    
-    <h2 class="center">Login</h2>
+<div class="hero">
+  <div class="content">
+    <div class="form-container">
+      <h2 class="center">Login</h2>
 
-    <form action="/auth/login" method="POST">
-      <label>
-        Email
-        <input type="email" name="email" placeholder="email@email.com" />
-      </label>
-  
-      <label>Password
-        <input type="password" name="password" placeholder="********" />
-      </label>
-  
-      <button type="submit">Login</button>
+      <form class="form" action="/auth/login" method="POST">
+        <label>
+          Email
+          <input type="email" name="email" placeholder="email@email.com" />
+        </label>
 
-    </form>
-    
-    <% if(typeof errorMessage !== 'undefined') { %>
+        <label
+          >Password
+          <input type="password" name="password" placeholder="********" />
+        </label>
+
+        <button type="submit">Login</button>
+      </form>
+
+      <% if(typeof errorMessage !== 'undefined') { %>
       <p class="error"><%= errorMessage %></p>
       <% } %>
 
-    <div>
-      <p>If you don't have an account yet, &nbsp</p>
-      <a href="/auth/signup">click here to make one</a>
+      <div>
+        <p>If you don't have an account yet, &nbsp</p>
+        <a href="/auth/signup">click here to make one</a>
+      </div>
     </div>
-    
   </div>
-
 </div>
