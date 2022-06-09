@@ -8,7 +8,7 @@ const {
 
 const Plant = require("../models/Plant.model");
 
-router.get("/", isLoggedIn, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     let allPlants = await Plant.find();
     res.render("plant/type-list", { allPlants, userInSession: req.session.currentUser });

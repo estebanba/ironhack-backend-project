@@ -15,14 +15,7 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     let myPlants = await UserPlant.find({ owner: ownerId[0].id }).populate(
       "plantType"
     );
-    // let myWatering = await (await UserPlant.find({owner: ownerId[0].id})).populate("plantType");
 
-    // let patatas = myPlants.forEach(eachPlant => {
-    //   eachPlant.lastWatering
-    // })
-
-    // let receivedDate = myPlants[10].lastWatering
-    // let shortDate = receivedDate.toISOString().split("T");
     res.render("userPlant/my-list", {
       myPlants,
       userInSession: req.session.currentUser,
@@ -36,16 +29,6 @@ router.get("/", isLoggedIn, async (req, res, next) => {
   }
 });
 
-// router.post("/", isLoggedIn, async (req, res, next) => {
-//   try {
-//     const ownerId = await User.find(req.session.currentUser)
-//     let myPlants = await UserPlant.find({owner: ownerId[0].id}).populate("plantType");
-//     res.render("userPlant/my-list", { myPlants });
-//   } catch (error) {
-
-//   }
-
-// });
 
 router.get("/create", isLoggedIn, async (req, res, next) => {
   try {
@@ -55,12 +38,7 @@ router.get("/create", isLoggedIn, async (req, res, next) => {
       userInSession: req.session.currentUser,
     });
   } catch (error) {
-    res.render("userPlant/my-create", {
-      plantType,
-      errorMessage:
-        "Error occurred while trying to create a plant. Try again later",
-      userInSession: req.session.currentUser,
-    });
+    res.render("/user-profile");
   }
 });
 
@@ -86,18 +64,6 @@ router.post("/create", isLoggedIn, async (req, res, next) => {
         `The plant ${watering.name} has to be watered once every ${watering.wateringWeekly} days. Please water your plant today!`
       );
     }
-    console.log(
-      "form date",
-      dateEpoch,
-      "today date",
-      todayEpoch,
-      "date from the past",
-      waterMinusTodayEpoch
-    );
-
-    // console.log("fecha de form 1 ",date.setDate(date.getDate()), "fecha de hoy",today.setDate(today.getDate()))
-    // console.log("fecha de form 2 ",date.setDate(date.getDate(data.lastWatering)), "hoy - watering",today.setDate(today.getDate()-watering.wateringWeekly))
-    console.log(">>>>>>>>>> dateNumber: ", dateNumber);
     let calcWatering = dateNumber
       .toLocaleString()
       .slice(0, dateNumber.toLocaleString().indexOf(","))
@@ -181,7 +147,7 @@ router.post("/:id/delete", isLoggedIn, async (req, res, next) => {
     await UserPlant.findByIdAndDelete(plantId);
     res.redirect("/userPlant");
   } catch (error) {
-    res.redirect("user-profile", {
+    res.redirect("/user-profile", {
       errorMessage: "An error occurred while deleting a plant",
     });
   }
@@ -195,7 +161,9 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
       plant,
       userInSession: req.session.currentUser,
     });
-  } catch (error) {}
+  } catch (error) {
+    res.redirect("/user-profile")
+  }
 });
 
 router.post("/:id/watered", async (req, res, next) => {
