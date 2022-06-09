@@ -19,7 +19,7 @@
       <p class="center">Next watering: <%- plant.nextWatering %></p>
       <p class="center comments">Comments: <%= plant.comments %></p>
 
-      <a class="center" href="plant/<%- plant._id %>">Click for Details</a>
+      <a class="center" href="plant/<%- plant.plantType._id %>">Click for Details</a>
 
       <hr class="card-line" />
 
@@ -51,10 +51,3 @@
   </div>
 </div>
 
-<!-- <p class="center"
-<%# <% if (plant.watered === true) { %>
-<% class="fresh" %> %> 
-></p>
-<%#<% } else { %>%>
- <p class="center">It's not fresh <%= plant.watered %></p>
-<%#<% } %> -->%>

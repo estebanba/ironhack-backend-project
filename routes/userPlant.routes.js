@@ -15,7 +15,6 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     let myPlants = await UserPlant.find({ owner: ownerId[0].id }).populate(
       "plantType"
     );
-console.log(myPlants)
     myPlants.forEach((plant) => {
       const date = new Date(plant.nextWatering);
       const today = new Date();
