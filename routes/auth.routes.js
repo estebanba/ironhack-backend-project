@@ -14,7 +14,7 @@ const salt = bcryptjs.genSaltSync(saltRounds);
 // SIGNUP //
 
 router.get("/signup", isLoggedOut, (req, res, next) => {
-  res.render("auth/signup");
+  res.render("auth/signup", { userInSession: req.session.currentUser });
 });
 
 router.post("/signup", isLoggedOut, async (req, res) => {
@@ -37,10 +37,12 @@ router.post("/signup", isLoggedOut, async (req, res) => {
       console.log("Username error identified");
       res.render("auth/signup", {
         errorMessage: "User already in use",
+        userInSession: req.session.currentUser,
       });
     } else if (Object.keys(error.keyValue).includes("email")) {
       console.log("Username error identified");
       res.render("auth/signup", {
+        userInSession: req.session.currentUser,
         errorMessage: "Email already in use",
       });
     }
