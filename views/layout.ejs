@@ -18,17 +18,36 @@
           </ul>
         </div>
         <div class="nav-right">
-          <ul class="admin">
-            <li><a href="/plant/create">Create Plant</a></li>
-          </ul>
-          <ul class="logged-in">
-            <li><a href="/userPlant">My Plants</a></li>
-            <li><a href="/userPlant/create">Add Plant</a></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
-          <ul class="logged-out">
+          
+          <% if (typeof userInSession !== "undefined") {
+             if (userInSession.role === "admin") { %>
+              <ul class="admin">
+                <li><a href="/plant/create">Admin: Create Plant</a></li>
+              </ul>
+            <% } %>
+  
+            <% if (userInSession) { %>
+              <ul class="logged-in">
+              <li><a href="/userPlant">My Plants</a></li>
+              <li><a href="/userPlant/create">Add Plant</a></li>
+              <li>
+                <form action="auth/logout" method="POST">
+                  <button class="blend-style" type="submit">Logout</button>
+                </form>
+              </li>
+            </ul>
+            <% } 
+          } %>
+          
+          
+
+          <% if (!userInSession) { %>
+            <ul class="logged-out">
             <li><a href="/auth/login">Login</a></li>
           </ul>
+          <% } %>
+
+          
         </div>
       </nav>
     </header>
@@ -40,7 +59,7 @@
 
     <footer>
       <div>
-        <p>Eric | Esteban © 2022</p>
+        <p>Eric Company | Esteban Basili © 2022</p>
       </div>
     </footer>
     
