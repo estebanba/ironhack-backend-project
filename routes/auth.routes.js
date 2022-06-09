@@ -50,7 +50,7 @@ router.post("/signup", isLoggedOut, async (req, res) => {
 // LOGIN
 
 router.get("/login", isLoggedOut, (req, res, next) => {
-  res.render("auth/login");
+  res.render("auth/login", {userInSession: req.session.currentUser});
 });
 
 router.post("/login", isLoggedOut, async (req, res, next) => {
@@ -58,14 +58,14 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
     const { email, password } = req.body;
     if (email === "" || password === "") {
       res.render("auth/login", {
-        errorMessage: "Please enter both email and password to login.",
+        errorMessage: "Please enter both email and password to login.", userInSession: req.session.currentUser
       });
       return;
     }
     const userLogged = await User.findOne({ email });
     if (!userLogged) {
       res.render("auth/login", {
-        errorMessage: `User ${email} does not exist. Try again please`,
+        errorMessage: `User ${email} does not exist. Try again please`, userInSession: req.session.currentUser
       });
       return;
     } else if (bcryptjs.compareSync(password, userLogged.password)) {
@@ -75,11 +75,11 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
       res.redirect("/user-profile");
       //res.render("users/user-profile", { userLogged });
     } else {
-      res.render("auth/login", { errorMessage: "Password is incorrect, try again please" });
+      res.render("auth/login", { errorMessage: "Password is incorrect, try again please" , userInSession: req.session.currentUser});
     }
   } catch (error) {
     console.log(error);
-    res.render("auth/login", { errorMessage: "Unknown error, please try again" });
+    res.render("auth/login", { errorMessage: "Unknown error, please try again" , userInSession: req.session.currentUser});
   }
 });
 

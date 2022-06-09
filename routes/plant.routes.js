@@ -11,7 +11,7 @@ const Plant = require("../models/Plant.model");
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
     let allPlants = await Plant.find();
-    res.render("plant/type-list", { allPlants });
+    res.render("plant/type-list", { allPlants, userInSession: req.session.currentUser });
   } catch (error) {
     console.log(error);
     res.redirect("/");
@@ -31,14 +31,14 @@ router.post("/create", async (req, res) => {
     const data = req.body;
     await Plant.create(req.body);
     console.log("new plant added");
-    res.render("plant/type-list", { data });
+    res.render("plant/type-list", { data , userInSession: req.session.currentUser});
   } catch (error) {
     console.log("error: ", error);
     let allPlants = await Plant.find();
     res.render("plant/type-list", {
       allPlants,
       errorMessage:
-        "There was en error creating your plant, please try again later",
+        "There was en error creating your plant, please try again later", userInSession: req.session.currentUser
     });
   }
 });
@@ -47,7 +47,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const plantId = req.params.id;
     let plant = await Plant.findById(plantId);
-    res.render("plant/type-detail", { plant });
+    res.render("plant/type-detail", { plant , userInSession: req.session.currentUser});
   } catch (error) {
     res.redirect("/plant")
   }

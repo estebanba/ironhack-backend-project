@@ -23,11 +23,11 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 
     // let receivedDate = myPlants[10].lastWatering
     // let shortDate = receivedDate.toISOString().split("T");
-    res.render("userPlant/my-list", { myPlants });
+    res.render("userPlant/my-list", { myPlants, userInSession: req.session.currentUser });
   } catch (error) {
     res.render("user-profile", {
       errorMessage:
-        "An error occurred while charging your plants, please try again later",
+        "An error occurred while charging your plants, please try again later", userInSession: req.session.currentUser
     });
   }
 });
@@ -46,12 +46,12 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 router.get("/create", isLoggedIn, async (req, res, next) => {
   try {
     const plantType = await Plant.find();
-    res.render("userPlant/my-create", { plantType });
+    res.render("userPlant/my-create", { plantType, userInSession: req.session.currentUser });
   } catch (error) {
     res.render("userPlant/my-create", {
       plantType,
       errorMessage:
-        "Error occurred while trying to create a plant. Try again later",
+        "Error occurred while trying to create a plant. Try again later", userInSession: req.session.currentUser
     });
   }
 });
@@ -98,13 +98,13 @@ router.post("/create", isLoggedIn, async (req, res, next) => {
       const plantType = await Plant.find();
       res.render("userPlant/my-create", {
         plantType,
-        errorMessage: "Don't leave for tomorrow the watering you can do today my friend",
+        errorMessage: "Don't leave for tomorrow the watering you can do today my friend", userInSession: req.session.currentUser
       });
     } else if (error.message.includes("The plant")){
       const plantType = await Plant.find();
       res.render("userPlant/my-create", {
         plantType,
-        errorMessage: error,
+        errorMessage: error, userInSession: req.session.currentUser
       });
     }
 
@@ -112,7 +112,7 @@ router.post("/create", isLoggedIn, async (req, res, next) => {
       const plantType = await Plant.find();
       res.render("userPlant/my-create", {
         plantType,
-        errorMessage: "Provide a valid date",
+        errorMessage: "Provide a valid date",userInSession: req.session.currentUser
       });
     }
   }
@@ -123,7 +123,7 @@ router.get("/:id/edit", isLoggedIn, async (req, res, next) => {
     const plantId = req.params.id;
     let plant = await UserPlant.findById(plantId).populate("plantType");
     const plantType = await Plant.find();
-    res.render("userPlant/my-edit", { plant, plantType });
+    res.render("userPlant/my-edit", { plant, plantType, userInSession: req.session.currentUser });
   } catch (error) {
     res.redirect("user-profile", {
       errorMessage: "An error occurred while editing a plant",
@@ -164,7 +164,7 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
     const plantId = req.params.id;
     let { plantType } = await UserPlant.findById(plantId);
     let plant = await Plant.findById(plantType);
-    res.render("plant/type-detail", { plant });
+    res.render("plant/type-detail", { plant, userInSession: req.session.currentUser });
   } catch (error) {
 
   }
