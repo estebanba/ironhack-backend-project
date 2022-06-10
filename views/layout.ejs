@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-euiv="X-UA-Compatible" content="ie=edge" />
-    <title><%= appTitle %></title>
+    <title>PlantApp</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
@@ -12,11 +13,13 @@
     <header>
       <nav>
         <div class="nav-left">
+          <a href="/" class="active"
+            ><img class="icon" src="/images/logo-icon.png" alt="logo"
+          /></a>
           <h1><a href="/" class="active">PlantApp</a></h1>
         </div>
         <div class="nav-right">
-          <% if (typeof userInSession !== "undefined") { if (userInSession.role
-          === "admin") { %>
+          <% if (userInSession) { if (userInSession.role === "admin") { %>
           <ul class="admin">
             <li><a href="/plant/create">Create Plant</a></li>
           </ul>

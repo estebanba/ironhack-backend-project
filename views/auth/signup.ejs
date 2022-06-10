@@ -1,40 +1,47 @@
-<div class="content">
-  <div class="form-container">
-    <h2 class="center">Signup</h2>
+<div class="hero">
+  <div class="content">
+    <div class="form-container">
+      <h2 class="center">Signup</h2>
 
-    <form action="/auth/signup" method="POST">
-      <label>
-        Username
-        <input type="text" name="username" placeholder="ironhacker" required />
-      </label>
+      <form action="/auth/signup" method="POST">
+        <label>
+          Username
+          <input
+            type="text"
+            name="username"
+            placeholder="ironhacker"
+            required
+          />
+        </label>
 
-      <label>
-        Password
-        <input
-          type="password"
-          name="password"
-          placeholder="********"
-          required
-        />
-      </label>
+        <label>
+          Password
+          <input
+            type="password"
+            name="password"
+            placeholder="********"
+            required
+          />
+        </label>
 
-      <label>
-        Email
-        <input
-          type="email"
-          name="email"
-          placeholder="user@ironhack.com"
-          required
-        />
-      </label>
+        <label>
+          Email
+          <input
+            type="email"
+            name="email"
+            placeholder="user@ironhack.com"
+            required
+          />
+        </label>
 
-      <button type="submit">Create account</button>
-    </form>
-  </div>
+        <button class="btn-form center" type="submit">Create account</button>
+      </form>
+    </div>
 
-  <div>
-    <% if(typeof errorMessage !== 'undefined') { %>
-    <p class="error"><%= errorMessage %></p>
-    <% } %>
+    <div>
+      <% if(typeof errorMessage !== 'undefined') { %>
+      <p class="error"><%= errorMessage %></p>
+      <% } %>
+    </div>
   </div>
 </div>

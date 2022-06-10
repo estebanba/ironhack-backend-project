@@ -30,7 +30,7 @@ router.post("/signup", isLoggedOut, async (req, res) => {
       email,
       role: "user",
     });
-    res.redirect("/user-profile");
+    res.redirect("/userPlant");
   } catch (error) {
     if (Object.keys(error.keyValue).includes("username")) {
       res.render("auth/signup", {
@@ -71,7 +71,7 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
       return;
     } else if (bcryptjs.compareSync(password, userLogged.password)) {
       req.session.currentUser = userLogged;
-      res.redirect("/user-profile");
+      res.redirect("/userPlant");
     } else {
       res.render("auth/login", {
         errorMessage: "Password is incorrect, try again please",

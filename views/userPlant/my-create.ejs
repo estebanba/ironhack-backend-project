@@ -1,47 +1,51 @@
-<div class="content">
-  <h2>Add a new plant to your collection</h2>
+<div class="hero">
+  <div class="content">
+    <div class="form-container">
+      <h2 class="center">Add a new plant to your collection</h2>
 
-  <form class="form" action="/userPlant/create" method="POST">
-    <label
-      >Name:
-      <input type="text" name="name" required />
-    </label>
+      <form class="form" action="/userPlant/create" method="POST">
+        <label
+          >Name:
+          <input type="text" name="name" required />
+        </label>
 
-    <label>
-      Plant Type
-      <select name="plantType">
-        <% plantType.forEach(({ id, name }) => { %>
-        <option value="<%= id %>"><%= name %></option>
-        <%})%>
-      </select>
-    </label>
+        <label>
+          Plant Type
+          <select name="plantType">
+            <% plantType.forEach(({ id, name }) => { %>
+            <option value="<%= id %>"><%= name %></option>
+            <%})%>
+          </select>
+        </label>
 
-    <label
-      >Location:
-      <input type="text" name="location" />
-    </label>
+        <label
+          >Location:
+          <input type="text" name="location" />
+        </label>
 
-    <label
-      >Last Watered:
-      <input
-        id="lastWatering"
-        type="date"
-        name="lastWatering"
-        placeholder="dd-mm-yyyy"
-        value=""
-        min="2022-01-01"
-        max="2030-12-31"
-      />
-    </label>
+        <label
+          >Last Watered:
+          <input
+            id="lastWatering"
+            type="date"
+            name="lastWatering"
+            placeholder="dd-mm-yyyy"
+            value=""
+            min="2022-01-01"
+            max="2030-12-31"
+          />
+        </label>
 
-    <label
-      >Comments:
-      <input type="text" name="comments" />
-    </label>
+        <label
+          >Comments:
+          <input type="text" name="comments" />
+        </label>
 
-    <button type="submit">Add</button>
-  </form>
-  <% if(typeof errorMessage !== 'undefined') { %>
-  <p class="error"><%= errorMessage %></p>
-  <% } %>
+        <button class="btn-form" type="submit">Add</button>
+      </form>
+      <% if(typeof errorMessage !== 'undefined') { %>
+      <p class="error"><%= errorMessage %></p>
+      <% } %>
+    </div>
+  </div>
 </div>

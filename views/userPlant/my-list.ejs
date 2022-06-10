@@ -1,7 +1,23 @@
 <div class="content">
-  <h2>All my plants</h2>
+  
+  <% if(userInSession) { %>
+    <div class="user-bar">
+      <h2>Hello <%= userInSession.username %>!, check out your plants :)</h2>
+      <button class="btn-form">
+        <a href="/userPlant">Reload the page</a>
+      </button>
+      <button class="btn-form">
+        <a href="/plant/create">Add a new plant</a>
+      </button>
+    </div>
 
-  <% %> <% %>
+    <% if(typeof errorMessage !== 'undefined') { %>
+    <p class="error"><%= errorMessage %></p>
+    <% } %> <% } else { %>
+    <p>Still no logged in user, sorry!</p>
+    <% } %>
+
+
   <div class="plant-grid">
     <% myPlants.forEach( plant => { %>
 
