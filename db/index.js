@@ -2,10 +2,14 @@
 // https://www.npmjs.com/package/mongoose
 const mongoose = require("mongoose");
 
+// Import the dotenv package in the file with the Mongoose connection:
+require("dotenv").config();
+
 // ℹ️ Sets the MongoDB URI for our app to have access to it.
 // If no env has been set, we dynamically set it to whatever the folder name was upon the creation of the app
 
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/ironhack-backend-project";
+const MONGO_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/ironhack-backend-project";
 
 mongoose
   .connect(MONGO_URI)

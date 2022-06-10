@@ -7,9 +7,9 @@
 } 
 
 body {
-  height: 100vh;
+  min-height: 100vmin;
   color: #272727;
-  margin: 0;
+  margin: auto;
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   /* background: linear-gradient(rgb(135, 203, 172, 0.5), rgb(204, 206, 225, 0.75), url("../images/hero-background.jpg")); */
@@ -89,8 +89,13 @@ nav ul li, button {
 }
 
 .hero-logo {
-  padding-top: 100px;
-  width: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* padding-top: 100px; */
+  max-width: 800px;
+  max-height: 75%;
   margin: auto;
   display: block;
 }
@@ -183,7 +188,7 @@ h4 {
   border: 0;
   border-radius: 10px;
   position: absolute;
-  bottom: 10%;
+  bottom: 7%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 2px 2px 5px rgb(151, 151, 151);
@@ -203,7 +208,7 @@ h4 {
   padding-bottom: 0;
   background-color: #CCCEE1;
   border: 0;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 2px 2px 5px rgb(151, 151, 151);
 }
 
