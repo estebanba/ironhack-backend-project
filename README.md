@@ -1,8 +1,10 @@
 # The PlantApp
 
+- [Heroku app Link](https://https://plantappiron.herokuapp.com/)
+
 ## Description
 
-The PlantApp is an App that helps you take care of your personal garden. You can create a user and have your own collection of plants. In the app's database there will be a wide range of plant type. With this general information you can customize your own plants and give them name, location and maybe a comment. The app reminds you the last time you watered your plants and recommends the next one using the plant type information from the database.
+The PlantApp is an App that helps you take care of your personal garden. You can create a user and have your own collection of plants. In the app's database there will be a wide range of plant types. With this general information you can customize your own plants and give them name, location and maybe a comment. The app reminds you the last time you watered your plants and recommends the next one using the plant type information from the database.
 
 ## User
 
@@ -18,6 +20,9 @@ The PlantApp is an App that helps you take care of your personal garden. You can
 
 - There's user roles. Admin users have access to different views and different features
 - Order plants by next watering date
+- Upload own plant photos instead of generic
+- Browse other users' plants 
+- Improve user experience
 
 ## ROUTES:
 **Index**
@@ -26,13 +31,13 @@ The PlantApp is an App that helps you take care of your personal garden. You can
 
 **Auth**
 - GET /auth/signup
-    - redirects to /user-profile if user logged in
+    - redirects to /userPlant if user logged in
     - renders the signup form 
 - POST /auth/signup
-    - redirects to /user-profile if user logged is in
+    - redirects to /userPlant if user logged is in
     - creates a new user in the database
 - GET /auth/login
-    - redirects to /user-profile if user logged in
+    - redirects to /userPlant if user logged in
     - renders the login form 
 - POST /auth/login
     - redirects to /userPlant if user logged in
@@ -46,41 +51,38 @@ The PlantApp is an App that helps you take care of your personal garden. You can
     - redirects to /homepage if an error occurs
     - renders the plant type list
 - GET /plant/create
-    - redirects to /plant if user not logged in or user is not admin
+    - redirects to /plant if is not admin
     - renders a form to create a new plant type
 - POST /plant/create
     - creates a new plant type in the database
     - renders the plant list with the new addition
 - GET /plant/:id
-    - redirects to /plant if user not logged in
     - renders the details of a single plant
 
 **User Plant**
 - GET /userPlant
-    - redirects to /user-profile if an error occurs
+    - redirects to /homepage if an error occurs
     - renders a list of all user plants
 - GET /userPlant/create
-    - redirects to /user-profile if an error occurs
+    - reloads if an error occurs
     - renders a form to create a new user plant 
 - POST /userPlant/create
     - if the Last Watering date introduced is in the future (incongruency) renders the form again with an error message
     - if the Last Watering date introduced is too far in the past renders the form again with an error message
+    - if required information is lacking reloads the page with an error message
     - creates a new user plant in the user collection
-    - renders the user plant collection from the user
+    - renders the updated user plant collection from the user
 - GET /userPlant/:id/edit
-    - redirects to /user-profile if an error happens
+    - redirects to /userPlant if an error happens
     - renders edit form for one of your plants with the current info
 - POST /userPlant/:id/edit
     - redirects to /userPlant if an error happens
     - finds and updates the user plant with provided info
     - redirects to /userPlant with the updated list of user plants
 - POST /userPlant/:id/delete
-    - redirects to /user-profile if an error happens
+    - redirects to /userPlant if an error happens
     - finds a plant and deletes it 
     - redirects to /userPlant with the updated list of user plants
-- GET /userPlant/:id
-    - redirects to /user-profile if an error happens
-    - renders the plant type details of the user plant passed by parameter
 - POST /userPlant/:id/watered
     - redirects to /userPlant if an error happens
     - updates user plant watering information 
@@ -116,5 +118,6 @@ UserPlant model
 ## Links
 
 - [Trello Link](https://trello.com/b/ITGWOM0Q/backend-project)
-- [Slides Link]()
+- [Slides Link](https://docs.google.com/presentation/d/1v-4U4MX5f_-c-O5cHzfqQ0pyR_90xmpkYhAKGwX5dKI/edit#slide=id.g12c83e1429a_0_18)
 - [Github repository Link](https://github.com/estebanba/ironhack-backend-project)
+- [Heroku app Link](https://https://plantappiron.herokuapp.com/)
