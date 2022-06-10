@@ -1,12 +1,12 @@
 <div class="content">
   
   <% if(userInSession) { %>
-    <div>
+    <div class="user-bar">
       <h2>Hello <%= userInSession.username %>!, check out your plants :)</h2>
-      <button>
+      <button class="btn-form">
         <a href="/userPlant">Reload the page</a>
       </button>
-      <button>
+      <button class="btn-form">
         <a href="/plant/create">Add a new plant</a>
       </button>
     </div>

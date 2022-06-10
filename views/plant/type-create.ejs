@@ -1,47 +1,51 @@
-<div class="content">
-  <h2>Add a new plant to the main library</h2>
+<div class="hero">
+  <div class="content">
+    <div class="form-container">
+      <h2 class="center">Add a new plant to the main library</h2>
 
-  <form action="/plant/create" method="POST">
-    <label
-      >Name:
-      <input type="text" name="name" required />
-    </label>
+      <form action="/plant/create" method="POST">
+        <label
+          >Name:
+          <input type="text" name="name" required />
+        </label>
 
-    <label
-      >Category:
-      <input type="text" name="category" required />
-    </label>
+        <label
+          >Category:
+          <input type="text" name="category" required />
+        </label>
 
-    <label
-      >Image:
-      <input type="text" name="imageSrc" />
-    </label>
+        <label
+          >Image:
+          <input type="text" name="imageSrc" />
+        </label>
 
-    <label
-      >Description:
-      <input type="text" name="description" />
-    </label>
+        <label
+          >Description:
+          <input type="text" name="description" />
+        </label>
 
-    <label
-      >Light Exposure
-      <select name="lightExposure">
-        <option value="low">Low</option>
-        <option value="low">Medium</option>
-        <option value="low">High</option>
-      </select>
-    </label>
+        <label
+          >Light Exposure
+          <select name="lightExposure">
+            <option value="low">Low</option>
+            <option value="low">Medium</option>
+            <option value="low">High</option>
+          </select>
+        </label>
 
-    <label
-      >Water every
-      <input type="number" name="wateringWeekly" />
-      days
-    </label>
+        <label
+          >Water every
+          <input type="number" name="wateringWeekly" />
+          days
+        </label>
 
-    <label
-      >Pet friendly:
-      <input type="checkbox" name="petFriendly" />
-    </label>
+        <label
+          >Pet friendly:
+          <input type="checkbox" name="petFriendly" />
+        </label>
 
-    <button type="submit">Add</button>
-  </form>
+        <button class="btn-form" type="submit">Add</button>
+      </form>
+    </div>
+  </div>
 </div>
