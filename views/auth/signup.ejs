@@ -3,7 +3,7 @@
     <div class="form-container">
       <h2 class="center">Signup</h2>
 
-      <form action="/auth/signup" method="POST">
+      <form class="form" action="/auth/signup" method="POST">
         <label>
           Username
           <input
@@ -34,14 +34,14 @@
           />
         </label>
 
+        <% if(typeof errorMessage !== 'undefined') { %>
+        <p class="error"><%= errorMessage %></p>
+        <% } %>
+
         <button class="btn-form center" type="submit">Create account</button>
       </form>
     </div>
 
-    <div>
-      <% if(typeof errorMessage !== 'undefined') { %>
-      <p class="error"><%= errorMessage %></p>
-      <% } %>
-    </div>
+    <div></div>
   </div>
 </div>

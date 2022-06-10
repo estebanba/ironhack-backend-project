@@ -324,6 +324,12 @@ input, select {
   box-sizing: border-box;
 }
 
+.error {
+  color: rgb(224, 116, 116);
+  font-weight: 700;
+  text-align: center;
+}
+
 .blink {
   font-weight: 700;
   color: rgb(224, 116, 116);
