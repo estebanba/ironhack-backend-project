@@ -35,7 +35,7 @@ The PlantApp is an App that helps you take care of your personal garden. You can
     - redirects to /user-profile if user logged in
     - renders the login form 
 - POST /auth/login
-    - redirects to /user-profile if user logged in
+    - redirects to /userPlant if user logged in
     - creates a new user session 
 - POST /auth/logout 
     - redirects to /homepage 
